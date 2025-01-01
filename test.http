@@ -1,0 +1,34 @@
+http://localhost:3000/piadas
+
+
+###
+POST http://localhost:3000/user/create
+content-type: application/json
+
+{
+    "email": "jcmcf2333333@gmail.com",
+    "password": "admin1234"
+}
+
+###
+POST http://localhost:3000/user/auth
+content-type: application/json
+
+{
+    "email": "jcmcf2@gmail.com",
+    "password": "admin1234"
+}
+
+
+###
+http://localhost:3000/user/fetch
+
+
+###
+POST https://backend-jokes.vercel.app/user/auth
+content-type: application/json
+
+{
+    "email": "jcmcf2@gmail.com",
+    "password": "admin1234"
+}
