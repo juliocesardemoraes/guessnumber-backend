@@ -32,3 +32,14 @@ content-type: application/json
     "email": "jcmcf2@gmail.com",
     "password": "admin1234"
 }
+
+
+###
+POST http://localhost:3000/user/authsign
+content-type: application/json
+
+{
+    "username": "julkibr",
+    "password": "admin1234",
+    "picture": "123"
+}

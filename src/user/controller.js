@@ -1,4 +1,9 @@
-import { authService, createService, fetchService } from "./service.js";
+import {
+  authService,
+  createService,
+  fetchService,
+  authsignService,
+} from "./service.js";
 
 const userFetchController = async (request, response) => {
   const user = await fetchService();
@@ -22,4 +27,21 @@ const userAuthController = async (request, response) => {
   return response.status(200).send(serviceResponse);
 };
 
-export { userAuthController, userCreateController, userFetchController };
+const userAuthSignController = async (request, response) => {
+  const serviceResponse = await authsignService(request.body);
+
+  if (serviceResponse?.error) {
+    return response
+      .status(serviceResponse.statusCode)
+      .send({ error: true, message: serviceResponse.message });
+  }
+
+  return response.status(200).send(serviceResponse);
+};
+
+export {
+  userAuthController,
+  userCreateController,
+  userFetchController,
+  userAuthSignController,
+};

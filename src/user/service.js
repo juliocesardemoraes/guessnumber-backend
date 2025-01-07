@@ -31,4 +31,29 @@ const authService = async (body) => {
   return { user, message: "Login bem sucedido" };
 };
 
-export { fetchService, createService, authService };
+const authsignService = async (body) => {
+  if (!body.username || !body.password || !body.picture) {
+    return { error: true, message: "Dados faltantes", statusCode: 400 };
+  }
+
+  const user = await User.findOne({
+    username: body.username,
+  });
+
+  if (user) {
+    const userAuth = await User.findOne({
+      username: body.username,
+      password: body.password,
+    });
+
+    if (userAuth == null) {
+      return { error: true, message: "Dados inválidos", statusCode: 403 };
+    }
+    return { user, message: "Login bem sucedido" };
+  } else {
+    const user = await User.create(body);
+    return { user, message: "Usuário criado com sucesso!", statusCode: 201 };
+  }
+};
+
+export { fetchService, createService, authService, authsignService };
