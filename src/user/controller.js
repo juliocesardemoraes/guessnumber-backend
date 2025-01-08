@@ -4,6 +4,7 @@ import {
   fetchService,
   authsignService,
   scoreUpdateService,
+  leaderboardService,
 } from "./service.js";
 
 const userFetchController = async (request, response) => {
@@ -52,10 +53,23 @@ const userScoreUpdateController = async (request, response) => {
   return response.status(200).send(serviceResponse);
 };
 
+const leaderboardController = async (request, response) => {
+  const serviceResponse = await leaderboardService(request.body);
+
+  if (serviceResponse?.error) {
+    return response
+      .status(serviceResponse.statusCode)
+      .send({ error: true, message: serviceResponse.message });
+  }
+
+  return response.status(200).send(serviceResponse);
+};
+
 export {
   userAuthController,
   userCreateController,
   userFetchController,
   userAuthSignController,
   userScoreUpdateController,
+  leaderboardController,
 };

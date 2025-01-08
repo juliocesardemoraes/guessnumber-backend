@@ -5,6 +5,7 @@ import {
   userFetchController,
   userAuthSignController,
   userScoreUpdateController,
+  leaderboardController,
 } from "./user/controller.js";
 
 const userRouter = Router();
@@ -18,5 +19,7 @@ userRouter.post("/auth", userAuthController);
 userRouter.post("/authsign", userAuthSignController);
 
 userRouter.post("/scoreupdate", userScoreUpdateController);
+
+userRouter.get("/leaderboard", leaderboardController);
 
 export { userRouter };

@@ -74,10 +74,17 @@ const scoreUpdateService = async (body) => {
   return { user, message: "Usuário atualizado com sucesso!", statusCode: 201 };
 };
 
+const leaderboardService = async (body) => {
+  const users = await User.find({}).sort({ score: -1, tries: 1 });
+
+  return { users, message: "Lista retornada com sucesso!", statusCode: 200 };
+};
+
 export {
   fetchService,
   createService,
   authService,
   authsignService,
   scoreUpdateService,
+  leaderboardService,
 };

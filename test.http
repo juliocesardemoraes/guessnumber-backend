@@ -50,6 +50,9 @@ content-type: application/json
 
 {
     "username": "admin",
-    "tries": 20,
-    "score": 10
+    "score": 21,
+    "tries": 12
 }
+
+### 
+GET http://localhost:3000/user/leaderboard
