@@ -49,6 +49,7 @@ const authsignService = async (body) => {
     if (userAuth == null) {
       return { error: true, message: "Dados inválidos", statusCode: 403 };
     }
+    console.log(user);
     return { user, message: "Login bem sucedido" };
   } else {
     const user = await User.create(body);
@@ -56,4 +57,27 @@ const authsignService = async (body) => {
   }
 };
 
-export { fetchService, createService, authService, authsignService };
+const scoreUpdateService = async (body) => {
+  if (!body.username || body.score == null || body.tries == null) {
+    return { error: true, message: "Dados faltantes", statusCode: 400 };
+  }
+
+  const user = await User.updateOne(
+    {
+      username: body.username,
+    },
+    {
+      score: body.score,
+      tries: body.tries,
+    }
+  );
+  return { user, message: "Usuário atualizado com sucesso!", statusCode: 201 };
+};
+
+export {
+  fetchService,
+  createService,
+  authService,
+  authsignService,
+  scoreUpdateService,
+};

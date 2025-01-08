@@ -43,3 +43,13 @@ content-type: application/json
     "password": "admin1234",
     "picture": "123"
 }
+
+###
+POST http://localhost:3000/user/scoreupdate
+content-type: application/json
+
+{
+    "username": "admin",
+    "tries": 20,
+    "score": 10
+}
